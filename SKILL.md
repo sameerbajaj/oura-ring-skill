@@ -1,31 +1,25 @@
 ---
 name: oura-ring
-description: Fetch Oura Ring readiness/sleep + 7-day readiness trends via Oura Cloud API V2, and generate a Morning Readiness Brief.
+description: Humanized Oura V2 integration for tactical readiness coaching and trend analysis.
 ---
 
-# Oura Ring (V1)
+# Oura Ring (The Insight Engine)
 
-This skill provides a small, public-facing reference implementation for pulling **Readiness**, **Sleep**, and **7-day Readiness trends** from the **Oura V2 API** (`/v2/usercollection/*`).
+This skill isn't for tracking numbers; it's for managing your biological budget. It turns the Oura V2 API into a set of tactical instructions for your daily life. 
 
-## Quick Reference
+## Capability Summary
+Use this when you want to know if you should push through a deep-work sprint or back off for recovery. It interprets sleep architecture, heart rate deltas, and HRV trends to tell you the *why* behind your scores.
 
-- CLI (raw data):
-  - `python3 skills/oura-ring/cli.py --format json --pretty readiness`
-  - `python3 skills/oura-ring/cli.py --format json --pretty sleep`
-  - `python3 skills/oura-ring/cli.py --format json --pretty trends`
-  - `python3 skills/oura-ring/cli.py --format json --pretty resilience`
-  - `python3 skills/oura-ring/cli.py --format json --pretty stress`
+## Quick Commands
+*   *The Brief*: `bash skills/oura-ring/scripts/morning_brief.sh` (The "Human-First" summary).
+*   *Raw Data*: `python3 skills/oura-ring/cli.py [readiness|sleep|trends|resilience|stress]`
 
-- Morning brief (formatted):
-  - `./skills/oura-ring/scripts/morning_brief.sh`
-
-## Features
-
-- **Morning Readiness Brief**: Tactical recommendation based on latest scores.
-- **Trend Analysis**: Insights on score changes over the last 7 days.
-- **Resilience Tracking**: Real-time capacity mapping for stress management.
+## The "One Big Prompt" Integration
+If you are spawning a subagent to help plan your week, feed it the morning brief first. It will automatically suggest moving high-intensity tasks to high-readiness days.
 
 ## Setup
+1.  *Token*: Put your Oura Personal Access Token in `skills/oura-ring/.env` as `OURA_PERSONAL_ACCESS_TOKEN=xxx`.
+2.  *Privacy*: This skill processes everything locally. Your token never leaves your machine.
 
 ### 1) Install dependencies (recommended: venv)
 
