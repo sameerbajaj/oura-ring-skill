@@ -19,6 +19,7 @@ PYTHON_CLI="$SKILL_DIR/cli.py"
 SLEEP_JSON=$(python3 "$PYTHON_CLI" --env-file "$ENV_FILE" --format json sleep)
 READINESS_JSON=$(python3 "$PYTHON_CLI" --env-file "$ENV_FILE" --format json readiness)
 TRENDS_JSON=$(python3 "$PYTHON_CLI" --env-file "$ENV_FILE" --format json trends)
+STRESS_JSON=$(python3 "$PYTHON_CLI" --env-file "$ENV_FILE" --format json stress)
 
 python3 - <<EOF
 import json
@@ -32,10 +33,12 @@ def fmt_dur(sec):
 sleep_data = json.loads('''$SLEEP_JSON''')
 readiness_data = json.loads('''$READINESS_JSON''')
 trends_data = json.loads('''$TRENDS_JSON''')
+stress_data = json.loads('''$STRESS_JSON''')
 
 s_item = sleep_data.get('item', {})
 s_detail = sleep_data.get('detail', {})
 r_item = readiness_data.get('item', {})
+st_item = stress_data.get('item', {})
 trend_items = trends_data.get('items', [])
 trend_sessions = trends_data.get('sessions', [])
 
@@ -54,7 +57,8 @@ print(f"- REM Sleep: *{fmt_dur(rem)}*")
 print(f"- Time Awake: *{fmt_dur(awake)}*")
 print(f"Efficiency: *{s_detail.get('efficiency', 0)}%*")
 print(f"Lowest RHR: *{s_detail.get('lowest_heart_rate', 0)} bpm*")
-print(f"Avg HRV: *{s_detail.get('average_hrv', 0)} ms*\n")
+print(f"Avg HRV: *{s_detail.get('average_hrv', 0)} ms*")
+print(f"Recovery Index: *{r_item.get('contributors', {}).get('recovery_index', 0)}/100*\n")
 
 # 2. TODAY'S STRATEGY
 print("*TODAY'S STRATEGY* 🔋")
@@ -67,7 +71,8 @@ else:
     msg = "🛌 *Recovery mode.* Focus on low-energy tasks and active recovery."
 
 print(f"Readiness: *{score}*")
-print(f"Insight: {msg}\n")
+print(f"Insight: {msg}")
+print(f"Stress Level: *{st_item.get('stress_score', 0)}* (High: {st_item.get('stress_high', 0)}m)\n")
 
 # 3. DETAILED TRENDS (24h Delta)
 print("*24-HOUR TRENDS* 📈")
