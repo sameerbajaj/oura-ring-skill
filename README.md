@@ -17,3 +17,7 @@ This isn't just a data dump. It’s a tactical layer for your day. It pulls your
 
 ## The Philosophy
 I built this because I wanted an assistant that knew when I was red-lining. If you use Clawdbot, this skill allows your agent to proactively suggest task rebalancing based on how you actually slept.
+
+---
+
+Part of the open-source tools collection by [Sameer Bajaj](https://sameerbajaj.com). Learn more on the [project page](https://sameerbajaj.com/tools/clawdbot-skills/).

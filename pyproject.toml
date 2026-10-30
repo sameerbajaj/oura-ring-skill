@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "oura-ring-skill"
+version = "1.0.0"
+description = "Oura Ring V2 API tactical coach skill for Claude Code and ClawdBot"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Sameer Bajaj", email = "sameer@sameerbajaj.com"}
+]
+keywords = ["oura", "skill", "agent", "health", "claudecode"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://sameerbajaj.com/tools/clawdbot-skills/"
+Repository = "https://github.com/sameerbajaj/oura-ring-skill"
