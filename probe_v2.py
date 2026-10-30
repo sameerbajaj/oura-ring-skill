@@ -8,7 +8,7 @@ import os
 import httpx
 from dotenv import load_dotenv
 
-load_dotenv("/Users/sameerbajaj/clawd/skills/oura-ring/.env")
+load_dotenv()
 token = os.getenv("OURA_PERSONAL_ACCESS_TOKEN")
 base_url = "https://api.ouraring.com/v2/usercollection"
 headers = {"Authorization": f"Bearer {token}"}
